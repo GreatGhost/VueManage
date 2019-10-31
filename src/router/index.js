@@ -14,10 +14,15 @@ export default new Router({
           path: '/',
           component: resolve => require(['../pages/home/home.vue'], resolve),
           meta: {title: '首页'},
-        },{
+        },
+        {
           path: '/home',
           component: resolve => require(['../pages/home/home.vue'], resolve),
           meta: {title: '首页'},
+        },
+        {
+          path:'/login',
+          component:resolve=>require(['../pages/login/login.vue'],resolve)
         }
       ]
     })
