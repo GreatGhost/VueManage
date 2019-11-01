@@ -8,7 +8,7 @@
 
             <form action="" class="login-form">
                 <div class="login-input-item " v-for="(item,index) in loginList" :key="index">
-                    <input type="text" class="form-control" />
+                    <input :type="item.type" class="form-control shadow" :value="item.value" :placeholder="item.placeholder" />
                 </div>
             </form>
         </div>
@@ -22,8 +22,8 @@
         data() {
             return {
                 loginList:[
-                    {name:'登录名',value:'',placeholder:'Username or Email address'},
-                    {name:'密码',value:'',placeholder:'Password'}
+                    {name:'登录名',value:'',placeholder:'Username or Email address',type:'text'},
+                    {name:'密码',value:'',placeholder:'Password',type:'password'}
                 ]
             }
         },
@@ -71,6 +71,7 @@
             }
             p{
                 color: #6c757d!important;
+                margin-bottom: 16px;
             }
             .login-form{
                 .login-input-item{
@@ -90,11 +91,21 @@
                         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
                         border-radius: 32px;
                         outline: none;
-                        &.shadow{
+                    }
+                    input.shadow{
                             -webkit-box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
                             box-shadow: 0 0.125rem 0.8rem rgba(0, 0, 0, 0.1) !important;
-                        }
                     }
+
+                    input::-webkit-input-placeholder {
+                          color: #ccc;
+                    }
+                    input::-moz-placeholder{
+                          color: #ccc;
+                    }
+                    input::-ms-input-placeholder{
+                          color: #ccc;
+                    }                                        
                 }
             }
         }
