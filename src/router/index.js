@@ -21,9 +21,17 @@ export default new Router({
           meta: {title: '首页'},
           children:[
             {
+              path:'index',
+              component:resolve => require(['../pages/index/index.vue'], resolve),
+            },            
+            {
               path:'charts',
               component:resolve => require(['../pages/charts/charts.vue'], resolve),
-            }
+            },
+            {
+              path:'forms',
+              component:resolve => require(['../pages/forms/forms.vue'], resolve),
+            },            
           ]
         },
         {

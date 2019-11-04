@@ -1,25 +1,28 @@
 <template>
   <div class='nav-list'>
-      <div class="list" :class="item.isSelect?'active':''" v-for="(item,index) in nav" :key="index">
-            <div class="icon"></div>
-            <div class="item">{{item.name}}</div>
+    <div class="list">
+      <div class="item" @click="tapNav(index)" :class="item.isSelect?'active':''" v-for="(item,index) in nav" :key="index">
+        <van-icon :name="item.icon" />
+        
+        <div class="name">{{item.name}}</div>
       </div>
+
+    </div>
 
   </div>
 </template>
 
 <script>
-
   export default {
-    name:'',
-    props:{
-        nav:{
-            type:Array,
-            required:true,
-            default:[]
-        }
+    name: '',
+    props: {
+      nav: {
+        type: Array,
+        required: true,
+        default: []
+      }
     },
-    data () {
+    data() {
       return {
 
       };
@@ -33,34 +36,43 @@
 
     mounted() {},
 
-    methods: {},
+    methods: {
+      tapNav(index){
+        this.$emit('tap',index);
+      }
+    },
 
     watch: {}
 
   }
-
 </script>
 <style lang='less' scoped>
-    .nav-list{
-        width:225px;
-        height:52px;
-        .list{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            &.active{
-                    background: #007bff;
-            }
-            .icon{
-                width:24px;
-                height:36px;
-                margin-right: 16px;
-                background: #fff;
-            }
-            .item{
-                font-size: 14px;
-            }
+  .nav-list {
+    width: 225px;
+    .list {
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #adb5bd;
+        height: 52px;
+        &.active {
+          background: #007bff;
+          color:#fff;
+           .van-icon{
+             color:#fff;
+           } 
+        }
+        .van-icon {
+          font-size: 24px;
+          margin-right: 16px;
+          color: #adb5bd;
+          
         }
 
+      }
     }
+
+  }
 </style>

@@ -30,6 +30,8 @@
   }
 
 </script>
-<style lang='scss' scoped>
-
+<style lang='less' scoped>
+  .charts{
+    flex:1;
+  }
 </style>

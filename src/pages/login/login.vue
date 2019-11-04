@@ -86,7 +86,7 @@
                     return; 
                 }
                 this.$store.commit('SET_USERINFO',{name:name.value,pwd:pwd.value})
-                this.$router.push('/home');
+                this.$router.push('/index');
                 //this.$set(this.food,'account','100');
                 //console.log(this.food);
             },
