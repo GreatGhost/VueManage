@@ -1,27 +1,39 @@
 <template>
     <div class="home">
-        首页
-        {{title}}
+        <NavList :nav="navList" />
+        <router-view/>
     </div>
 </template>
 
 <script>
+ import {mapState, mapMutations} from 'vuex'
+ import NavList from '../../components/navList/navList';
+
 export default {
     data(){
         return {
-            title:'你好'
+            title:'你好',
+            navList:[
+                {name:'Home',path:'/',isSelect:true},
+                {name:'Charts',path:'/chart',isSelect:false}
+            ]
         }
     },
+    computed:{
+        ...mapState(['userInfo'])
+    },
     beforeCreate(){
-        console.log('测试')
         this.$axios({
             url:'https://elm.cangdu.org/v1/cities?type=guess',
             method:'get',
             data:{},
 
         }).then(function(res){
-            console.log(res);
         })
+    },
+
+    components:{
+        NavList:NavList
     }
 
 }

@@ -76,13 +76,17 @@
                 let pwd=this.loginList.find(tmp=>tmp.id==='pwd'); 
                 let msg='';
                 if(!name.value){
-                    alert('请输入姓名')
+                    this.$toast('请输入姓名')
+                    // alert('请输入姓名')
                     return;
                 }
                 if(!pwd.value){
-                    alert('请输入密码')
+                    this.$Toast('请输入密码')
+                    // alert('请输入密码')
                     return; 
                 }
+                this.$store.commit('SET_USERINFO',{name:name.value,pwd:pwd.value})
+                this.$router.push('/home');
                 //this.$set(this.food,'account','100');
                 //console.log(this.food);
             },

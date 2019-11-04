@@ -19,10 +19,21 @@ export default new Router({
           path: '/home',
           component: resolve => require(['../pages/home/home.vue'], resolve),
           meta: {title: '首页'},
+          children:[
+            {
+              path:'charts',
+              component:resolve => require(['../pages/charts/charts.vue'], resolve),
+            }
+          ]
         },
         {
           path:'/login',
           component:resolve=>require(['../pages/login/login.vue'],resolve)
+        },
+        {
+          path: '*',
+            name: 'notfound',
+            component:resolve=>require(['../pages/notfound/notfound.vue'],resolve)
         }
       ]
     })
