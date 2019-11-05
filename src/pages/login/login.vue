@@ -25,7 +25,9 @@
 <script>
 // 插件会自动将代码转化为方式二中的按需引入形式
     import * as service from '../../http/service'
+    import * as util from '../../util/util'
     export default {
+        name:'login',
         components: {},
         props: {},
         data() {
@@ -85,10 +87,9 @@
                     // alert('请输入密码')
                     return; 
                 }
-                this.$store.commit('SET_USERINFO',{name:name.value,pwd:pwd.value})
-                this.$router.push('/index');
-                //this.$set(this.food,'account','100');
-                //console.log(this.food);
+                this.$store.commit('SET_USERINFO',{name:name.value,pwd:pwd.value});
+                util.setStore('login-user',{name:name.value,pwd:pwd.value})
+                this.$router.push('/home/index');
             },
 
             getCityData(){

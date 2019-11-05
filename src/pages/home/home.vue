@@ -37,7 +37,6 @@
                         isSelect: false,
                         icon: 'hot-o'
                     },
-
                 ]
             }
         },

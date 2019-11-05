@@ -49,6 +49,8 @@
 <style lang='less' scoped>
   .nav-list {
     width: 225px;
+    height:100vh;
+    background: #fff;
     .list {
       .item {
         display: flex;
