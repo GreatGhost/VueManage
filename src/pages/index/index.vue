@@ -28,7 +28,17 @@
       </div>
 
       <div class="work-hour">
-        <div class="section"></div>
+        <div class="section">
+          <div class="content">
+            <p class="value-wrapper">
+              <span class="value">86.4</span>
+              <span class="value-icon"></span>
+            </p>
+            <p class="title">Work hours</p>
+            <p class="tip">Lorem ipsum dolor sit</p>
+          </div>
+          <div class="pie" ref="pie"></div>
+        </div>
         <div class="section"></div>
       </div>
 
@@ -121,12 +131,75 @@
             smooth: true
           }]
         });
+      },
+      initPieChart() {
+        let myChart = echarts.init(this.$refs.pie);
+        console.log(myChart)
+        // 绘制图表
+        myChart.setOption({
+          tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+          },
+          legend: {
+            orient: 'vertical',
+            x: 'left',
+            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+          },
+          series: [{
+            name: '访问来源',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+              normal: {
+                show: false,
+                position: 'center'
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  fontSize: '12',
+                  fontWeight: 'bold'
+                }
+              }
+            },
+            labelLine: {
+              normal: {
+                show: false
+              }
+            },
+            data: [{
+                value: 335,
+                name: '直接访问'
+              },
+              {
+                value: 310,
+                name: '邮件营销'
+              },
+              {
+                value: 234,
+                name: '联盟广告'
+              },
+              {
+                value: 135,
+                name: '视频广告'
+              },
+              {
+                value: 1548,
+                name: '搜索引擎'
+              }
+            ]
+          }]
+        });
+
       }
     },
 
     created() {},
     mounted() {
       this.initLineChart();
+      this.initPieChart();
     }
   }
 </script>
@@ -191,6 +264,7 @@
         }
       }
     }
+
     /* 数据统计二 */
     .section-two {
       display: flex;
@@ -225,13 +299,60 @@
         }
       }
 
-      .work-hour{
-        flex:1;
-        .section{
-        background: #fff;
-        padding:32px;
-        border-radius: 15px;
-        margin-bottom:16px;
+      .work-hour {
+        flex: 1;
+
+        .section {
+          display: flex;
+          align-items: center;
+          background: #fff;
+          padding: 32px;
+          margin: 0 15px;
+          border-radius: 15px;
+          margin-bottom: 16px;
+
+          .content {
+            flex: 1;
+            text-align: left;
+
+            .value-wrapper {
+              display: flex;
+              align-items: center;
+
+              .value {
+                margin-right: 16px;
+                font-size: 28px;
+                font-weight: 800;
+              }
+
+              .value-icon {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #7CF29C;
+              }
+            }
+
+            .title {
+              font-size: 17px;
+              font-weight: 400;
+              color: rgb(108, 117, 125);
+              border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+              margin-bottom: 16px;
+              padding-bottom: 16px;
+            }
+
+            .tip {
+              color: #6c757d !important;
+              font-size: 12px;
+            }
+          }
+
+          .pie {
+            width: 333px;
+            height: 166px;
+          }
         }
       }
     }
