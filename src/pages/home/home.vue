@@ -11,7 +11,6 @@
         mapMutations
     } from 'vuex'
     import NavList from '../../components/navList/navList';
-    import navListVue from '../../components/navList/navList.vue';
     import * as service from '../../http/service'
     export default {
         data() {

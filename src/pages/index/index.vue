@@ -39,7 +39,15 @@
           </div>
           <div class="pie" ref="pie"></div>
         </div>
-        <div class="section"></div>
+        <div class="section">
+          <input @change="myFileOnChange" id="uploadFileInput" type="file" accept="image/*">
+          <Ibutton size='small' :disabled="false" range="a" ref="child">
+
+            <div class="a">天下无贼</div>
+            <div slot="tip" class="b">好心人</div>
+          </Ibutton>
+          <button @click="checkForm">单击校验</button>
+        </div>
       </div>
 
     </div>
@@ -48,13 +56,23 @@
 
 <script>
   import echarts from 'echarts'
+  import axios from 'axios'
+  import * as qiniu from 'qiniu-js'
+  import Ibutton from '../../components/ibutton/ibutton'
 
+  import schema from 'async-validator';
   export default {
     name: 'index',
-    components: {},
+    provide: {
+      name: '王军'
+    },
+    components: {
+      Ibutton
+    },
     props: {},
     data() {
       return {
+        imageUrl: '',
         list: [{
             name: 'Data consumed',
             value: '145,14 GB',
@@ -85,6 +103,62 @@
     watch: {},
     computed: {},
     methods: {
+
+      checkForm() {
+        var descriptor = {
+          name: {
+            type: "string",
+            required: true,
+            validator: (rule, value) => value === 'muji',
+          },
+          age: {
+            type: "number",
+            asyncValidator: (rule, value) => {
+              return new Promise((resolve, reject) => {
+                if (value < 18) {
+                  reject("too young"); // reject with error message
+                } else {
+                  resolve();
+                }
+              });
+            }
+          },
+          disabled:{
+            type:'boolean',
+          },
+          email:{
+            type:'email'
+          }
+        };
+        var validator = new schema(descriptor);
+        validator.validate({
+          name: "muj",
+          age:30,
+          disabled:true,
+          email:'1431@qq.com'
+        }, (errors, fields) => {
+          console.log(errors);
+          if (errors) {
+            // validation failed, errors is an array of all errors
+            // fields is an object keyed by field name with an array of
+            // errors per field
+            //return handleErrors(errors, fields);
+            return;
+          }
+          // validation passed
+        });
+
+        // PROMISE USAGE
+        validator.validate({ name: "muji", age: 16 }).then(() => {
+          // validation passed or without error message
+        }).catch(({ errors, fields }) => {
+          // return handleErrors(errors, fields);
+          console.log(errors);
+        })
+        validator.warning=function(e){
+          console.log(e)
+        }
+      },
       initCharts() {
         let myChart = echarts.init(this.$refs.chart);
         // 绘制图表
@@ -193,6 +267,11 @@
           }]
         });
 
+      },
+      //触发input change事件
+
+      myFileOnChange(e) {
+
       }
     },
 
@@ -200,6 +279,9 @@
     mounted() {
       this.initLineChart();
       this.initPieChart();
+      let comButton = this.$refs.child;
+      comButton.tap();
+      console.log(this.$store);
     }
   }
 </script>

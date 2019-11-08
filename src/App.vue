@@ -6,10 +6,29 @@
 
 <script>
 
+import * as util from './util/util'
 
 export default {
   name: 'app',
-  components:{}
+  components:{
+
+  },
+  created(){
+    this.initStore();
+  },
+  methods:{
+    initStore(){
+      let that=this;
+      if (util.getStore("store")) {
+        this.$store.replaceState(
+          Object.assign({}, this.$store.state, JSON.parse(util.getStore('store')))
+        );
+      }
+      window.addEventListener("beforeunload", () => {
+        util.setStore("store", this.$store.state);
+      });
+    }
+  }
 }
 </script>
 
