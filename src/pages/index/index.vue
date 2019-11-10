@@ -57,7 +57,6 @@
 <script>
   import echarts from 'echarts'
   import axios from 'axios'
-  import * as qiniu from 'qiniu-js'
   import Ibutton from '../../components/ibutton/ibutton'
 
   import schema from 'async-validator';

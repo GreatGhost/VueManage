@@ -1,10 +1,25 @@
 <template>
-    <div class="form"></div>
+    <div class="form">
+
+        <A />
+        <div>
+            <A>
+                <B>
+                    <C></C>
+                </B>
+            </A>
+        </div>
+    </div>
 </template>
 
 <script>
+import A from '../../components/A/A'
+import B from '../../components/B/B'
+import C from '../../components/C/C'
     export default {
-        components: {},
+        components: {
+            A,B
+        },
         props: {},
         data() {
             return {}
