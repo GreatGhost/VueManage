@@ -3,7 +3,7 @@
       <input 
       type="text"
       :value="currentValue"
-      @change="handleChange"
+      @input="handleChange"
        />
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
   },
   data(){
     return {
-
+        currentValue:''
     }
   },
   watch:{},

@@ -5,7 +5,7 @@
         <div>
             <A>
                 <B>
-                    <C></C>
+                    <C @change="changeInput"></C>
                 </B>
             </A>
         </div>
@@ -18,7 +18,7 @@ import B from '../../components/B/B'
 import C from '../../components/C/C'
     export default {
         components: {
-            A,B
+            A,B,C
         },
         props: {},
         data() {
@@ -26,7 +26,11 @@ import C from '../../components/C/C'
         },
         watch: {},
         computed: {},
-        methods: {},
+        methods: {
+            changeInput(e){
+                console.log(e)
+            }
+        },
         created() {},
         mounted() {}
     }
